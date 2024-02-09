@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -81,5 +81,43 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+</style> -->
+<template>
+  <div>
+    
+  </div>
+</template>
+
+<script setup>
+let i = 0;
+let factor = 0.006;
+let history = []
+const DOMSelectors = {
+  button: document.querySelector('#btn'),
+  button2: document.querySelector('#btn2'),
+  fifty: document.querySelector('#fifty')
+};
+</script>
+
+<style scoped>
+#app {
+  align-items: center;
+}
+body {
+  align-items: center;
+  text-align: center;
+}
+.data {
+  margin-top: 1rem;
+}
+.btn {
+  height: 2rem;
+  background: black;
+  color: rgb(192, 110, 255)
+}
+.number {
+  font-weight: bold;
+  color:rgb(0, 110, 255);
 }
 </style>
