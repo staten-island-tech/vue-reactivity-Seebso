@@ -9,16 +9,16 @@ import TheWelcome from '../components/TheWelcome.vue'
 </template> -->
 <template>
   <div>
-    <DestCard v-for="destination in destinations"
+    <App v-for="destination in destinations"
     :key="destination.name"
     :Destination="destination"/>
   </div>
 </template>
 
 <script setup>
-  import DestCard from "@/components/DestCard.vue"
+  import App from "@/App.vue"
   const destinations = [[
-        {
+        /* {
           name: "Venetian Renaissance",
           International: true,
           price: 1300,
@@ -53,12 +53,45 @@ import TheWelcome from '../components/TheWelcome.vue'
           International: true,
           price: 800,
           img: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80&quot;,"
+        }, */
+        {
+          name: "Welt",
+          path: "Nihility",
+          element: "Imaginary"
+        },
+        {
+          name: "Himeko",
+          path: "Erudition",
+          element: "Fire"
+        },
+        {
+          name: "Bronya",
+          path: "Harmony",
+          element: "Wind"
+        },
+        {
+          name: "Yanqing",
+          path: "Hunt",
+          element: "Ice"
+        },
+        {
+          name: "Bailu",
+          path: "Abundance",
+          element: "Lightning"
+        },
+        {
+          name: "Clara",
+          path: "Destruction",
+          element: "Physical"
+        },
+        {
+          name: "Gepard",
+          path: "Preservation",
+          element: "Ice"
         },
       ],]
 </script>
 
 <style scoped>
-div{
-  background-color: aliceblue;
-}
+
 </style>
