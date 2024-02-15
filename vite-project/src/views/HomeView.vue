@@ -8,11 +8,7 @@ import TheWelcome from '../components/TheWelcome.vue'
   </main>
 </template> -->
 <template>
-  <div>
-    <App v-for="destination in destinations"
-    :key="destination.name"
-    :Destination="destination"/>
-  </div>
+  
 </template>
 
 <script setup>

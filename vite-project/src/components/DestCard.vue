@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h3>{{ clicked }}</h3>
         <button @clicked="increment">Wish</button>
     </div>
 </template>

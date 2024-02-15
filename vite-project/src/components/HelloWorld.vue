@@ -1,4 +1,4 @@
-<!-- <script setup>
+<script setup>
 defineProps({
   msg: {
     type: String,
@@ -42,4 +42,3 @@ h3 {
   }
 }
 </style>
- -->
