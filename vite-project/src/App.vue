@@ -8,14 +8,14 @@
   </head>
   <body>
     <div id="app"><h1>Wish Simulator</h1></div>
-    <button type="button" id="btn" class="btn">Wish</button>
-    <button type="button" id="btn2" class="btn">Wish Till Ya Get 5 Star</button>
+    <button @click="oneclick">Wish</button>
+    <button @click="wishes">Wish Till Ya Get 5 Star</button>
     <div class="data"> Games Played: <span id="games" class="number">0</span></div>
     <div> Average Pulls per 5 Star: <span id="wish" class="number">-</span></div>
     <div>Last Pity: <span id="last" class="number">0</span></div>
     <div>Wishes Before 5 Star:  <span id="pull" class="number">0</span></div>
     <div id="fifty">{{ five }}</div>  
-    <button @click="oneclick">Wish</button>
+    <p v-for="i in 3">{{ array[i-1] }}</p>
     
 
   </body>
@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref } from 'vue'
+let array = ["Coded by Alvis","I'm so cool","(not)"]
 const five = ref('')
 let i = 0;
 let factor = 0.006;
@@ -32,7 +33,11 @@ let history = []
   button2: document.querySelector('#btn2'),
   fifty: document.querySelector('#fifty')
 }; */
-
+function wishes() {
+  oneclick();
+  while (i > 0){
+    oneclick(); 
+  }}
 function oneclick(){
     if (i >= 74){
     factor = Math.min(1, factor + 0.06) 
