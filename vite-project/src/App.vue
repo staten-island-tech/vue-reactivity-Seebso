@@ -1,33 +1,29 @@
 
 <template>
- <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"><h1>Wish Simulator</h1></div>
-    <button @click="oneclick">Wish</button>
-    <button @click="wishes">Wish Till Ya Get 5 Star</button>
+ <div id="content">
+    <div><h1>Wish Simulator</h1></div>
+    <button class="btn wishBtn" @click="oneclick">Wish</button>
+    <button class="btn" @click="wishes">Wish Till Ya Get 5 Star</button>
     <div class="data"> Games Played: <span id="games" class="number">0</span></div>
     <div> Average Pulls per 5 Star: <span id="wish" class="number">-</span></div>
     <div>Last Pity: <span id="last" class="number">0</span></div>
     <div>Wishes Before 5 Star:  <span id="pull" class="number">0</span></div>
-    <div id="fifty">{{ five }}</div>  
-    <p v-for="i in 3">{{ array[i-1] }}</p>
-    
+    <div id="fifty"><strong>{{ fiftyStatus }}</strong></div> 
+    <p>Last {{ historyDisplayCount() }} games:</p> 
+    <div v-for="i in historyDisplayCount()">{{ history[history.length-i] }}</div>
+  </div>
 
-  </body>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-let array = ["Coded by Alvis","I'm so cool","(not)"]
-const five = ref('')
+const fiftyStatus = ref('')
 let i = 0;
 let factor = 0.006;
 let history = []
+let historyDisplayCount = () => {
+  return Math.min(history.length, 3)
+}
 /* const DOMSelectors = {
   button: document.querySelector('#btn'),
   button2: document.querySelector('#btn2'),
@@ -61,22 +57,22 @@ function random5() {
 }
 let f = 1
 function fifty() {
-  five.value = ""
+  fiftyStatus.value = ""
   const a = Math.random();
   if (f % 2 === 0){
     console.log("Guaranteed")
-    five.value = "Guaranteed Win"
+    fiftyStatus.value = "Guaranteed Win"
     f++;
     return
   }
   if (a < 0.5){
     f++;
     console.log("You lost the 50-50")
-    five.value = "You lost the 50-50! D:"
+    fiftyStatus.value = "You lost the 50-50! D:"
     return
   }
   console.log("You won the 50-50")
-  five.value = "You won the 50-50! :D"
+  fiftyStatus.value = "You won the 50-50! :D"
 }
 function win() {
   fifty();
@@ -102,7 +98,7 @@ function avg(){
 #app {
   align-items: center;
 }
-body {
+#content {
   align-items: center;
   text-align: center;
 }
@@ -117,5 +113,8 @@ body {
 .number {
   font-weight: bold;
   color:rgb(0, 110, 255);
+}
+.wishBtn{
+  margin-inline-end: 0.5rem;
 }
 </style>
