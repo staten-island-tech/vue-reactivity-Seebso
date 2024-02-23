@@ -1,18 +1,19 @@
 
 <template>
- <div id="content">
-    <div id="content__heading"><h1>Wish Simulator</h1></div>
-    <button class="content__button content__wish-button" @click="oneclick">Wish</button>
-    <button class="content__button" @click="wishes">Wish Till Ya Get 5 Star</button>
+  <div id="content">
+    <div id="content__heading">
+      <h1>Wish Simulator</h1>
+    </div>
+    <button class="content__button content__wish-button" @click="performClick">Wish</button>
+    <button class="content__button" @click="doWishUntilWin">Wish Till Ya Get 5 Star</button>
     <div class="data"> Games Played: <span id="games" class="number">{{ history.length }}</span></div>
-    <div> Average Pulls per 5 Star: <span id="wish" class="number">{{ avg() }}</span></div>
+    <div> Average Pulls per 5 Star: <span id="wish" class="number">{{ getAverage() }}</span></div>
     <div>Last Pity: <span id="last" class="number">{{ lastPity }}</span></div>
-    <div>Wishes Before 5 Star:  <span id="pull" class="number">{{ pullCount }}</span></div>
-    <div v-bind:style = "{ color:statusColor}"><strong>{{ fiftyStatus }}</strong></div> 
-    <p>Last {{ historyDisplayCount() }} games:</p> 
-    <div v-for="i in historyDisplayCount()">{{ history[history.length-i] }}</div>
+    <div>Wishes Before 5 Star: <span id="pull" class="number">{{ pullCount }}</span></div>
+    <div v-bind:style="{ color: statusColor }"><strong>{{ fiftyStatus }}</strong></div>
+    <p>Last {{ historyDisplayCount() }} games:</p>
+    <div v-for="i in historyDisplayCount()">{{ history[history.length - i] }}</div>
   </div>
-
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -26,21 +27,17 @@ let statusColor = "black";
 let historyDisplayCount = () => {
   return Math.min(history.length, 3)
 }
-/* const DOMSelectors = {
-  button: document.querySelector('#btn'),
-  button2: document.querySelector('#btn2'),
-  fifty: document.querySelector('#fifty')
-}; */
-function wishes() {
-  oneclick();
-  while (i > 0){
-    oneclick(); 
-  }}
-function oneclick(){
-    if (i >= 74){
-    factor = Math.min(1, factor + 0.06) 
+function doWishUntilWin() {
+  performClick();
+  while (i > 0) {
+    performClick();
   }
-  if (random5()){
+}
+function performClick() {
+  if (i >= 74) {
+    factor = Math.min(1, factor + 0.06)
+  }
+  if (getRandomNumber()) {
     return
   }
   i++;
@@ -49,27 +46,27 @@ function oneclick(){
   // document.getElementById("pull").innerText = i
   pullCount.value = i
 }
-function random5() {
-  const a = Math.floor(Math.random() * 1000); 
-  if (a < (factor * 1000)){ 
-    win();
-    return true 
+function getRandomNumber() {
+  const a = Math.floor(Math.random() * 1000);
+  if (a < (factor * 1000)) {
+    obtainWin();
+    return true
   }
   console.log(a)
   return false
 }
 let f = 1
-function fifty() {
+function playFiftyFifty() {
   fiftyStatus.value = ""
   statusColor = "black";
   const a = Math.random();
-  if (f % 2 === 0){
+  if (f % 2 === 0) {
     console.log("Guaranteed")
     fiftyStatus.value = "Guaranteed Win"
     f++;
     return
   }
-  if (a < 0.5){
+  if (a < 0.5) {
     statusColor = "red";
     f++;
     console.log("You lost the 50-50")
@@ -79,24 +76,24 @@ function fifty() {
   console.log("You won the 50-50")
   fiftyStatus.value = "You won the 50-50! :D"
 }
-function win() {
-  fifty();
-  let turns = i+1
+function obtainWin() {
+  playFiftyFifty();
+  let turns = i + 1
   console.log("Nice! You got a 5 star after " + (turns) + " pulls")
   history.push(turns)
   factor = 0.006
   lastPity = turns;
   i = 0
 }
-function avg(){
-  if (history.length == 0){
+function getAverage() {
+  if (history.length == 0) {
     return "-"
   }
   let sum = 0
-  for (let x of history){ 
-    sum = sum + x 
+  for (let x of history) {
+    sum = sum + x
   }
-  return Math.round(sum / history.length * 100) / 100 
+  return Math.round(sum / history.length * 100) / 100
 }
 </script>
 
@@ -104,23 +101,27 @@ function avg(){
 #app {
   align-items: center;
 }
+
 #content {
   align-items: center;
   text-align: center;
 }
+
 .data {
   margin-top: 1rem;
 }
+
 .content__button {
   height: 2rem;
   background: black;
   color: rgb(192, 110, 255)
 }
+
 .number {
   font-weight: bold;
-  color:rgb(0, 110, 255);
+  color: rgb(0, 110, 255);
 }
-.content__wish-button{
+
+.content__wish-button {
   margin-inline-end: 0.5rem;
-}
-</style>
+}</style>
