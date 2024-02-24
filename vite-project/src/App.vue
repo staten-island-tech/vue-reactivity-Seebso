@@ -6,10 +6,10 @@
     </div>
     <button class="content__button content__wish-button" @click="performClick">Wish</button>
     <button class="content__button" @click="doWishUntilWin">Wish Till Ya Get 5 Star</button>
-    <div class="data"> Games Played: <span id="games" class="number">{{ history.length }}</span></div>
-    <div> Average Pulls per 5 Star: <span id="wish" class="number">{{ getAverage() }}</span></div>
-    <div>Last Pity: <span id="last" class="number">{{ lastPity }}</span></div>
-    <div>Wishes Before 5 Star: <span id="pull" class="number">{{ pullCount }}</span></div>
+    <div class="content__data"> Games Played: <span id="games" class="content__number">{{ history.length }}</span></div>
+    <div> Average Pulls per 5 Star: <span id="wish" class="content__number">{{ getAverage() }}</span></div>
+    <div>Last Pity: <span id="last" class="content__number">{{ lastPity }}</span></div>
+    <div>Wishes Before 5 Star: <span id="pull" class="content__number">{{ pullCount }}</span></div>
     <div v-bind:style="{ color: statusColor }"><strong>{{ fiftyStatus }}</strong></div>
     <p>Last {{ historyDisplayCount() }} games:</p>
     <div v-for="i in historyDisplayCount()">{{ history[history.length - i] }}</div>
@@ -107,7 +107,7 @@ function getAverage() {
   text-align: center;
 }
 
-.data {
+.content__data {
   margin-top: 1rem;
 }
 
@@ -117,7 +117,7 @@ function getAverage() {
   color: rgb(192, 110, 255)
 }
 
-.number {
+.content__number {
   font-weight: bold;
   color: rgb(0, 110, 255);
 }
