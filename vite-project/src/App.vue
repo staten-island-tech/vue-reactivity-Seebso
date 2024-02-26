@@ -34,7 +34,7 @@ function doWishUntilWin() {
   }
 }
 function performClick() {
-  if (i >= 74) {
+  if (i >= 73) {
     factor = Math.min(1, factor + 0.06)
   }
   if (getRandomNumber()) {
