@@ -2,7 +2,6 @@
     <div>
         <h3>{{ clicked }}</h3>
         <button @clicked="increment">Wish</button>
-        <p v-for="i in 1000">noah is the best</p>
     </div>
 </template>
 
